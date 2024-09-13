@@ -1,0 +1,2 @@
+render Tachyon tmp.dat
+"/usr/local/lib/vmd/tachyon_LINUXAMD64" tmp.dat -trans_vmd -aasamples 12 -shade_blinn -mediumshade -rescale_lights 1.0 -auto_skylight 0.05 -res 4500 3000 -format TGA -o FAD_eq.tga

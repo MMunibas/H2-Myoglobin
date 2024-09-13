@@ -1,0 +1,119 @@
+#!/usr/local/bin/vmd
+
+color Display Background white
+
+
+
+display depthcue off
+display cuedensity 0.35
+
+axes location off
+
+display ambientocclusion on
+display aoambient 0.8
+display aodirect 0.3
+
+color Element C black
+color Element O red
+color Type C black
+color Type O red3
+
+light 0 on
+light 1 off
+light 2 on
+light 3 on
+
+material change mirror Glossy 0.070000
+material change outline Glossy 1.000000
+material change outlinewidth Glossy 0.800000
+material change opacity Glass2 0.95
+material change outline Glass2 2.0
+material change outlinewidth Glass2 0.82
+
+
+
+# Default RTChrome
+material change ambient RTChrome 0.000000
+material change diffuse RTChrome 0.650000
+material change specular RTChrome 0.500000
+material change shininess RTChrome 0.530000
+material change mirror RTChrome 0.700000
+material change opacity RTChrome 1.000000
+material change outline RTChrome 0.000000
+material change outlinewidth RTChrome 0.000000
+material change transmode RTChrome 0.000000
+
+
+
+#topo delbond 3 9
+#topo delbond 2 4
+#topo delbond 8 4
+
+#display resetview
+#translate by -0.3 0.3 0.4
+#rotate x by -90.0
+#rotate y by -100.0
+#rotate x by -5.0
+#scale by 1.5
+#rotate y by 35
+
+
+mol new step4_equilibration.pdb
+
+# Create a new representation for segid PROA
+mol representation Lines
+mol color Name
+mol selection "segid PROA"
+mol material Opaque
+mol addrep top
+
+
+mol modcolor 0 0 Type
+mol modstyle 0 0 CPK 1.000000 0.300000 30.000000 30.000000
+mol modmaterial 0 0 Glossy
+
+
+
+# pocket 1
+draw color black
+draw material diffuse
+graphics top sphere {34.108837 24.921167 36.64517 } radius 1.3 resolution 80
+
+# pocket 2
+draw color blue
+graphics top sphere {31.078003 33.126167 38.373833} radius 1.3 resolution 80
+
+# pocket 3
+draw color magenta2
+graphics top sphere {24.063166 33.014664 34.96117 } radius 1.3 resolution 80
+
+# pocket 4
+draw color purple
+graphics top sphere {38.660336 39.527172 32.706665} radius 1.3 resolution 80
+
+# pocket 5
+draw color orange
+graphics top sphere {40.278095 34.51524  34.07819 } radius 1.3 resolution 80
+
+# pocket 6
+draw color gray
+graphics top sphere {27.63304  42.146538 33.644745} radius 1.3 resolution 80
+
+# pocket 7
+draw color red
+graphics top sphere {32.806107 42.072372 34.448475} radius 1.3 resolution 80
+
+# pocket 8
+draw color green
+graphics top sphere {26.164207 39.71433  31.078665} radius 1.3 resolution 80
+
+#pocket 9
+draw color yellow
+graphics top sphere {27.594034 43.18793  35.75183 } radius 1.3 resolution 80
+
+#render Tachyon tmp.dat
+#"/usr/local/lib/vmd/tachyon_LINUXAMD64" tmp.dat -trans_vmd -aasamples 12 -shade_blinn -mediumshade -rescale_lights 1.0 -auto_skylight 0.05 -res 2500 1500 -format TGA -o FAD_eq.tga
+
+
+
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=orca_scan
+#SBATCH --partition=long
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --mem-per-cpu=3000
+#SBATCH --exclude=node07,node08,node09,node10,node11,node12
+
+#--------------------------------------
+# Modules
+#--------------------------------------
+module load gcc/gcc-12.2.0-cmake-3.25.1-openmpi-4.1.4
+my_orca=/cluster/home/toepfer/programs/orca/orca
+ulimit -s 10420
+
+#--------------------------------------
+# Prepare Run
+#--------------------------------------
+
+export SLURMFILE=slurm-$SLURM_JOBID.out
+
+#--------------------------------------
+# Run ORCA
+#--------------------------------------
+
+$my_orca input/input_orca_scan_406 > output/output_orca_scan_406
+

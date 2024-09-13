@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --job-name=v14.p1
+#SBATCH --partition=long
+#SBATCH --nodes=1
+#SBATCH --ntasks=32
+#SBATCH --mem-per-cpu=4000
+
+#--------------------------------------
+# Modules
+#--------------------------------------
+
+module load gcc/gcc-12.2.0-cmake-3.25.1-openmpi-4.1.4 
+my_charmm=/cluster/home/toepfer/programs/c49a2/build/cmake/charmm
+ulimit -s 10420
+
+#--------------------------------------
+# Prepare Run
+#--------------------------------------
+
+export SLURMFILE=slurm-$SLURM_JOBID.out
+
+#--------------------------------------
+# Run CHARMM
+#--------------------------------------
+
+#mpirun -np 32 $my_charmm -i step4_equilibration.inp -o step4_equilibration.out
+mpirun -np 32 $my_charmm -i step4_preparation.inp -o step4_preparation.out
+#mpirun -np 32 $my_charmm -i prod22.inp -o prod22.out
+mpirun -np 32 $my_charmm -i prod_pocket.inp -o prod_pocket.out
+
